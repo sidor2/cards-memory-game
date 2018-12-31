@@ -1,3 +1,5 @@
+
+
 const t0 = performance.now();
 /*
  * Create a list that holds all of your cards
@@ -265,6 +267,7 @@ const storeList = (moves, time) => {
 /**clears the local storage */
 const clearStorage = () => {
   window.localStorage.clear();
+  renderTable();
 };
 
 
@@ -276,7 +279,6 @@ const getGames = () => {
 
 const table = document.querySelector('#gameTable');
 const renderTable = () => {
-// debugger;
   clearTable();
   let gamesArray = getGames();
   control.gamesCounter = gamesArray.length || 0;
@@ -341,7 +343,7 @@ const findLastScore = (game) => {
 };
 
 const resetTable = document.getElementById('reset-table');
-resetTable.addEventListener('click', clearTable);
+resetTable.addEventListener('click', clearStorage);
 
 renderTable();
 const t1 = performance.now();
