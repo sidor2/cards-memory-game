@@ -165,7 +165,7 @@ const keepOpen = () => {
   });
   control.matchedCards.push(...control.cardsToCheck);
   emptyArray(control.cardsToCheck);
-  setTimeout(runCheck,500);
+  setTimeout(runCheck,100);
 };
 
 const emptyArray = (arr) => {
