@@ -51,7 +51,7 @@ const stars = starsLine.querySelectorAll('i');
 const setDeck = () => {
   const shuffledCards = shuffle(control.cardsArray);
   
-  for(i=0; i<cardImages.length; i++) {
+  for(let i=0; i<cardImages.length; i++) {
     if(cardImages[i].classList[1]) {
       let imageClass = cardImages[i].classList[1];
       cardImages[i].classList.replace(imageClass, shuffledCards[i]);
@@ -104,17 +104,20 @@ const shuffle = (array) => {
 const openCardListener = () => {
   cardsDeck.addEventListener('click', openCard, true);
 }
+98
 /**opens a card on click */
 const openCard = (e) => {
   e.preventDefault();
   let image = e.target;
+
   if(control.gameStart === 0) {
     gameTimerStart();
   }
 
   if(e.target.tagName === 'LI') {
-    image.classList.add('open','show');
     if(control.cardsToCheck.length < 2 && control.cardsToCheck.indexOf(image) === -1) {
+      console.log(control.cardsToCheck)
+      image.classList.add('open','show');
       openCardsList(image);
     }
   }
@@ -124,9 +127,9 @@ const openCard = (e) => {
 const openCardsList = (image) => {
   control.cardsToCheck.push(image);
   if(control.cardsToCheck.length === 2) {
+
     counterUpdate();
     counterRender();
-    cardsDeck.removeEventListener('click', openCard, true);
     checkTwoCards(control.cardsToCheck);
   }
 };
@@ -153,7 +156,7 @@ const closeCards = () => {
 };
 
 const closeAllCards = () => {
-  for(i=0; i<cards.length; i++){
+  for(let i=0; i<cards.length; i++){
     cards[i].classList.remove('open', 'show', 'match');
   }
 };
@@ -221,7 +224,7 @@ const starRating = () => {
 
 /**resets the rating */
 const resetRating = () => {
-  for(i=0; i<stars.length; i++) {
+  for(let i=0; i<stars.length; i++) {
     stars[i].classList.remove('hide');
   }
 };
@@ -273,8 +276,7 @@ const clearStorage = () => {
 
 const getGames = () => {
   let games = window.localStorage.getItem('list');
-  let parGames = JSON.parse(games);
-  return parGames;
+  return JSON.parse(games);
 };
 
 const table = document.querySelector('#gameTable');
